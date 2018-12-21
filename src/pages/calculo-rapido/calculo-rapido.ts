@@ -40,7 +40,7 @@ export class CalculoRapidoPage {
           this.presentToast("Insira o valor da sua glicemia");
           this.resultado = null;
       } else {
-        this.resultado = (this.glicemia - 50) / 100;
+        this.resultado = (this.glicemia - 50) / 150;
       }
     }
     if (this.tipoCalculo == "C") {
