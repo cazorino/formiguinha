@@ -1,0 +1,56 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Refeições</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of refeicoes" #item>
+
+          <ion-item>
+            <h2>{{ item.refeicao.nome }}</h2>
+            <p>FS: {{ item.refeicao.fatorSub }} / FD: {{ item.refeicao.fatorDiv}} / FC: {{ item.refeicao.fatorCarb }}</p>
+          </ion-item>
+
+          <ion-item-options side="left">
+            <button ion-button (click)="editRefeicao(item)">
+              <ion-icon name="create"></ion-icon>
+              Editar
+            </button>
+            <button ion-button color="danger" (click)="removeRefeicao(item)">
+              <ion-icon name="trash"></ion-icon>
+              Excluir
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+
+
+    <ion-fab right bottom>
+        <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+        <ion-fab-list side="top">
+            <button ion-fab [style.background-color]="color" (click)="addRefeicao('Café')">
+                <ion-icon name="cafe"></ion-icon>
+                <div class="label">Café</div>
+            </button>
+     
+            <button ion-fab [style.background-color]="color" (click)="addRefeicao('Almoço')">
+              <ion-icon name="nutrition"></ion-icon>
+              <div  class="label"dir="rtl">Almoço</div>
+            </button>
+     
+            <button ion-fab [style.background-color]="color" (click)="addRefeicao('Jantar')">
+              <ion-icon name="pizza"></ion-icon>
+              <div  class="label"dir="rtl">Jantar</div>
+            </button>
+     
+            <button ion-fab [style.background-color]="color" (click)="addRefeicao('')">Outro</button>
+        </ion-fab-list>
+      </ion-fab>
+</ion-content>

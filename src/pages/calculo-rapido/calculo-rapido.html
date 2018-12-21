@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cálculo Rápido</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Calcular com</ion-label>
+    <ion-select [(ngModel)]="tipoCalculo" (ionChange)="mudouSelect($event)" interface="popover">
+      <ion-option value="G">Glicemia</ion-option>
+      <ion-option value="C">Carboidrato</ion-option>
+      <ion-option value="A">Ambos</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating><strong>Carboidratos</strong> consumidos (g)</ion-label>
+      <ion-input disabled="{{ disabledC }}" type="number" [(ngModel)]=carboidratos></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Valor da sua <strong>Glicemia</strong> (mg/dl)</ion-label>
+      <ion-input disabled="{{ disabledG }}" type="number" [(ngModel)]="glicemia"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+  <ion-card>
+
+      <ion-card-header style='text-align: center; font-size: 22px;'>
+        {{ resultado }} UI
+      </ion-card-header>
+    
+    </ion-card>
+  <button ion-button block (click)="calcular()">Calcular</button>
+
+</ion-content>

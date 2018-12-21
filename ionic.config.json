@@ -1,0 +1,7 @@
+{
+  "name": "formiguinha",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
