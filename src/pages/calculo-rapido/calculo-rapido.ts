@@ -48,7 +48,7 @@ export class CalculoRapidoPage {
         this.presentToast("Insira o valor de carboidratos consumidos");
         this.resultado = null;
       } else {
-        this.resultado = this.carboidratos / 100;
+        this.resultado = this.carboidratos / 300;
       }
     }
     if (this.tipoCalculo == "A") {
