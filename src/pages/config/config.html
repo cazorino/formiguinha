@@ -1,12 +1,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>config</ion-title>
+    <ion-title>Configurações</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
 
+    <ion-item>
+      <ion-label floating>Glicemia-Alvo</ion-label> <!-- fator de subtracao -->
+      <ion-input type="number" [(ngModel)]="fs"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Fator de Sensibilidade</ion-label> <!-- fator de divisao -->
+      <ion-input type="number" [(ngModel)]="fd"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Fator Carboidrato</ion-label>
+      <ion-input type="number" [(ngModel)]="fc"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+  <button ion-button block color="secondary" (click)="salvar()">Salvar</button>
 </ion-content>
