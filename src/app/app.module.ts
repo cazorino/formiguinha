@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { RefeicaoPage } from '../pages/refeicao/refeicao';
 import { CalculoRapidoPage } from '../pages/calculo-rapido/calculo-rapido';
 import { ControlePage } from '../pages/controle/controle';
+import { ConfigPage } from '../pages/config/config';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ControlePage } from '../pages/controle/controle';
     RefeicaoPage,
     CalculoRapidoPage,
     ControlePage,
+    ConfigPage,
     TabsPage
   ],
   imports: [
@@ -29,6 +31,7 @@ import { ControlePage } from '../pages/controle/controle';
     RefeicaoPage,
     CalculoRapidoPage,
     ControlePage,
+    ConfigPage,
     TabsPage
   ],
   providers: [
