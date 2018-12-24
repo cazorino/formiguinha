@@ -11,26 +11,39 @@
 <ion-content padding>
 
     <ion-list>
-        <ion-item-sliding *ngFor="let item of refeicoes" #item>
-
-          <ion-item>
-            <h2>{{ item.refeicao.nome }}</h2>
-            <p>FS: {{ item.refeicao.fatorSub }} / FD: {{ item.refeicao.fatorDiv}} / FC: {{ item.refeicao.fatorCarb }}</p>
-          </ion-item>
-
-          <ion-item-options side="left">
-            <button ion-button (click)="editRefeicao(item)">
-              <ion-icon name="create"></ion-icon>
-              Editar
-            </button>
-            <button ion-button color="danger" (click)="removeRefeicao(item)">
-              <ion-icon name="trash"></ion-icon>
-              Excluir
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-list>
-
+        <ion-card *ngFor="let item of refeicoes">
+          <ion-card-header>
+              <h1>{{ item.refeicao.name }}</h1>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row text-center>
+              <ion-col>
+                <p><strong>GA:</strong> {{ item.refeicao.fatorSub }}</p>
+              </ion-col>
+              <ion-col>
+                <p><strong>FS:</strong> {{ item.refeicao.fatorDiv }}</p>
+              </ion-col>
+              <ion-col>
+                <p><strong>FC:</strong> {{ item.refeicao.fatorCarb }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+          <ion-row text-center>
+            <ion-col>
+              <button ion-button icon-left clear small (click)="editRefeicao(item)">
+                <ion-icon name="create"></ion-icon>
+                <div>Editar</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-left clear small color="danger" (click)="removeRefeicao(item)">
+                  <ion-icon name="trash"></ion-icon>
+                  <div>Excluir</div>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+    </ion-list>
 
     <ion-fab right bottom>
         <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>

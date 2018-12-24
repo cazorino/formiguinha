@@ -1,0 +1,39 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Editar Refeição | {{ n }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+        <ion-label floating>Nome</ion-label>
+        <ion-input type="text" value="{{ n }}" [(ngModel)]=model.name></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Glicemia-Alvo</ion-label>
+        <ion-input type="number" [(ngModel)]=model.fatorSub></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Fator de Sensibilidade</ion-label>
+        <ion-input type="number" [(ngModel)]=model.fatorDiv></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Fator Carboidrato</ion-label>
+        <ion-input type="number" [(ngModel)]=model.fatorCarb></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button block color="secondary" (click)="save()">Salvar</button>
+
+</ion-content>
