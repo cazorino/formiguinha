@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class RefeicaoProvider {
-keyN: string;
+  keyN: string;
 
   constructor(private storage: Storage) {
 
@@ -27,7 +27,7 @@ keyN: string;
   }
 
   public getAll() {
-    let refeicoes: RefeicaoList[] =[];
+    let refeicoes: RefeicaoList[] = [];
 
     return this.storage.forEach((value: Refeicao, key: string, interationNumber: Number) => {
       let refeicao = new RefeicaoList();

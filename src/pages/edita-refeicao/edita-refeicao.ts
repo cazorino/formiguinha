@@ -24,7 +24,7 @@ export class EditaRefeicaoPage {
       this.model = new Refeicao();
     }
   }
-
+  
   save() {
     this.saveRefeicao()
       .then(() => {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { ConfigPage } from '../config/config';
+import { ConfigProvider } from '../../providers/config/config';
 
 @IonicPage()
 @Component({
@@ -7,21 +9,26 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
   templateUrl: 'calculo-rapido.html',
 })
 export class CalculoRapidoPage {
-  private disabledG: boolean;
-  private disabledC: boolean;
   tipoCalculo: any;
   carboidratos: any;
   glicemia: any;
   resultado: number;
   resultadoG: number;
   resultadoC: number;
+  disabledC: boolean;
+  disabledG: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController) {
-  }
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private toastCtrl: ToastController,
+              private configProvider: ConfigProvider) {  }
 
-  ionViewDidLoad() {
-    
-  }
+  ionViewWillEnter() {
+
+      //this.presentToast("Configure os fatores antes de usar essa função");
+      //this.navCtrl.push(ConfigPage);
+  }      
+
 
   presentToast(mensagem) {
     let toast = this.toastCtrl.create({
