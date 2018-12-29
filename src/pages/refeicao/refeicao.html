@@ -11,9 +11,10 @@
 <ion-content padding>
 
     <ion-list>
-        <ion-card *ngFor="let item of refeicoes">
+      <ion-card *ngFor="let item of refeicoes">
+        <div *ngIf="filtraRefeicao(item)">
           <ion-card-header>
-              <h1>{{ item.refeicao.name }}</h1>
+            <h1>{{ item.refeicao.name }}</h1>
           </ion-card-header>
           <ion-card-content>
             <ion-row text-center>
@@ -37,12 +38,13 @@
             </ion-col>
             <ion-col>
               <button ion-button icon-left clear small color="danger" (click)="removeRefeicao(item)">
-                  <ion-icon name="trash"></ion-icon>
-                  <div>Excluir</div>
+                <ion-icon name="trash"></ion-icon>
+                <div>Excluir</div>
               </button>
             </ion-col>
           </ion-row>
-        </ion-card>
+        </div>
+      </ion-card>    
     </ion-list>
 
     <ion-fab right bottom>

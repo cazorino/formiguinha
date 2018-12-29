@@ -25,6 +25,10 @@ export class RefeicaoPage {
       });
   }
 
+  filtraRefeicao(item: RefeicaoList) {
+    return item.key.startsWith("refeicao_");
+  }
+
   addRefeicao(n: string) {
     this.navCtrl.push(EditaRefeicaoPage, { n });
   }

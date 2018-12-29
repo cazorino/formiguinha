@@ -10,7 +10,7 @@ export class RefeicaoProvider {
   }
 
   public insert(refeicao: Refeicao) {
-    this.keyN = refeicao.name;
+    this.keyN = "refeicao_" + refeicao.name;
     return this.save(this.keyN, refeicao);
   }
 
