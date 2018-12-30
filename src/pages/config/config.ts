@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { ConfigProvider, Fator } from '../../providers/config/config';
+import { ConfigProvider, Fator, FatorList } from '../../providers/config/config';
 
 @IonicPage()
 @Component({
@@ -9,25 +9,39 @@ import { ConfigProvider, Fator } from '../../providers/config/config';
 })
 export class ConfigPage {
   model: Fator;
-  key: string;
+  key: string = "fatoresConfig";
+  fatores: FatorList[];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private toastCtrl: ToastController,
               private configProvider: ConfigProvider) {
-    if (this.navParams.data.Fator && this.navParams.data.key) {
-      this.model = this.navParams.data.refeicao;
-      this.key = this.navParams.data.key;
+  }
+
+  ionViewDidEnter() {
+    this.configProvider.getAll()
+      .then((results) => {
+        this.fatores = results;
+      });
+  }
+
+  filtraFator(item: FatorList) {
+    return item.key.startsWith("fatoresConfig");
+    /*if (item.key.startsWith("fatoresConfig")) {
+      this.model.fs = item.fator.fs;
+      this.model.fd = item.fator.fd;
+      this.model.fc = item.fator.fc;
+      return true;
     } else {
       this.model = new Fator();
-    }
+      return false;
+    }*/
   }
 
   save() {
     this.saveFator()
     .then(() => {
       this.presentToast("Valores salvos.");
-      this.navCtrl.pop();
     })
     .catch(() => {
       this.presentToast("Erro ao salvar os valores.");

@@ -13,19 +13,42 @@
 
     <ion-item>
       <ion-label floating>Glicemia-Alvo</ion-label> <!-- fator de subtracao -->
-      <ion-input type="number" [(ngModel)]="model.fs"></ion-input>
+      <ion-input type="number" ></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label floating>Fator de Sensibilidade</ion-label> <!-- fator de divisao -->
-      <ion-input type="number" [(ngModel)]="model.fd"></ion-input>
+      <ion-input type="number" ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Fator Carboidrato</ion-label>
-      <ion-input type="number" [(ngModel)]="model.fc"></ion-input>
+      <ion-input type="number" ></ion-input>
     </ion-item>
   
   </ion-list>
   <button ion-button block color="secondary" (click)="save()">Salvar</button>
+  <ion-list>
+    <ion-card *ngFor="let item of fatores">
+      <div *ngIf="filtraFator(item)">
+        <ion-card-header>
+          <h1 style="text-align: center;">Fatores Cadastrados</h1>
+          <p style='font-style:italic; text-align: center;'>Utilizados para o cálculo rápido</p>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row text-center>
+            <ion-col>
+              <p><strong>GA:</strong> {{ item.fator.fs }}</p>
+            </ion-col>
+            <ion-col>
+              <p><strong>FS:</strong> {{ item.fator.fd }}</p>
+            </ion-col>
+            <ion-col>
+              <p><strong>FC:</strong> {{ item.fator.fc }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </div>
+    </ion-card>
+  </ion-list>
 </ion-content>

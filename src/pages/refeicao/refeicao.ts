@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { RefeicaoProvider, Refeicao, RefeicaoList } from '../../providers/refeicao/refeicao';
+import { RefeicaoProvider, RefeicaoList } from '../../providers/refeicao/refeicao';
 import { EditaRefeicaoPage } from '../edita-refeicao/edita-refeicao';
 
 
