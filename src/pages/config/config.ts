@@ -16,6 +16,9 @@ export class ConfigPage {
               public navParams: NavParams,
               private toastCtrl: ToastController,
               private configProvider: ConfigProvider) {
+                if (this.model == undefined) {
+                  this.model = new Fator();
+                }
   }
 
   ionViewDidEnter() {
@@ -27,15 +30,6 @@ export class ConfigPage {
 
   filtraFator(item: FatorList) {
     return item.key.startsWith("fatoresConfig");
-    /*if (item.key.startsWith("fatoresConfig")) {
-      this.model.fs = item.fator.fs;
-      this.model.fd = item.fator.fd;
-      this.model.fc = item.fator.fc;
-      return true;
-    } else {
-      this.model = new Fator();
-      return false;
-    }*/
   }
 
   save() {
@@ -54,6 +48,13 @@ export class ConfigPage {
     } else {
       return this.configProvider.insert(this.model);
     }
+  }
+
+  doRefresh(refresher) {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
   }
 
   presentToast(mensagem) {

@@ -8,26 +8,34 @@
 
 
 <ion-content padding>
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingText="Puxe para atualizar"
+          refreshingText="Atualizando...">
+        </ion-refresher-content>
+    </ion-refresher>
+
   <p>Os valores desta configuração são fornecidos pelo seu médico, consulte-o.</p>
   <ion-list>
 
     <ion-item>
       <ion-label floating>Glicemia-Alvo</ion-label> <!-- fator de subtracao -->
-      <ion-input type="number" ></ion-input>
+      <ion-input type="number" [(ngModel)]=model.fs></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label floating>Fator de Sensibilidade</ion-label> <!-- fator de divisao -->
-      <ion-input type="number" ></ion-input>
+      <ion-input type="number" [(ngModel)]=model.fd></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Fator Carboidrato</ion-label>
-      <ion-input type="number" ></ion-input>
+      <ion-input type="number" [(ngModel)]=model.fc></ion-input>
     </ion-item>
-  
+    <button ion-button block color="secondary" (click)="save()">Salvar</button>
   </ion-list>
-  <button ion-button block color="secondary" (click)="save()">Salvar</button>
+
   <ion-list>
     <ion-card *ngFor="let item of fatores">
       <div *ngIf="filtraFator(item)">
@@ -51,4 +59,5 @@
       </div>
     </ion-card>
   </ion-list>
+
 </ion-content>
