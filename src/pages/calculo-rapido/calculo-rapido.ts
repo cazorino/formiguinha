@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ConfigPage } from '../config/config';
-import { ConfigProvider } from '../../providers/config/config';
+import { ConfigProvider, FatorList } from '../../providers/config/config';
 
 @IonicPage()
 @Component({
@@ -17,6 +17,11 @@ export class CalculoRapidoPage {
   resultadoC: number;
   disabledC: boolean;
   disabledG: boolean;
+  //fatores 
+  fs: number;
+  fd: number;
+  fc: number;
+  fatores: FatorList[];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -24,9 +29,36 @@ export class CalculoRapidoPage {
               private configProvider: ConfigProvider) {  }
 
   ionViewWillEnter() {
-
-      //this.presentToast("Configure os fatores antes de usar essa função");
-      //this.navCtrl.push(ConfigPage);
+    this.configProvider.getAll()
+      .then((results) => {
+        this.fatores = results;
+      });
+    try {
+      this.fatores.forEach(element => {
+        if (element.key.startsWith("fatoresConfig")) {
+          this.fs = element.fator.fs;
+          this.fd = element.fator.fd;
+          this.fc = element.fator.fc;
+        }
+        //verificação se fatores são vazios ou nulos
+        if (this.fs == 0 || this.fs == null || this.fs == undefined) {
+          this.presentToast("Configure os fatores antes de usar essa função");
+          this.navCtrl.push(ConfigPage);
+        }
+        if (this.fd == 0 || this.fd == null || this.fd == undefined) {
+          this.presentToast("Configure os fatores antes de usar essa função");
+          this.navCtrl.push(ConfigPage);
+        }
+        if (this.fc == 0 || this.fc == null || this.fc == undefined) {
+          this.presentToast("Configure os fatores antes de usar essa função");
+          this.navCtrl.push(ConfigPage);
+        }
+      });
+    } catch(err) {
+      this.presentToast("Configure os fatores antes de usar essa função");
+      this.navCtrl.push(ConfigPage);
+      console.log("O erro é:" + err);
+    }
   }      
 
 
