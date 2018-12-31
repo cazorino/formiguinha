@@ -3,21 +3,24 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ConfigProvider {
+  keyN: string = "fator_Config";
+  
   constructor(private storage: Storage) { }
 
   //create
   public insert(fator: Fator) {
-    return this.save(fator);
+    return this.save(this.keyN, fator);
   }
 
   //update
-   public update(fator: Fator) {
-    return this.save(fator);
+  public update(fator: Fator) {
+    return this.save(this.keyN, fator);
   }
 
-  private save(fator: Fator) {
-    return this.storage.set(fator.name, fator);
+  private save(key: string, fator: Fator) {
+    return this.storage.set(key, fator);
   }
+
 
   //delete
   public remove(key: string) {
@@ -43,7 +46,6 @@ export class ConfigProvider {
 }
 
 export class Fator {
-  name: string = "fatoresConfig";
   fs: number;
   fd: number;
   fc: number;

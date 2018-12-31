@@ -28,7 +28,7 @@ export class CalculoRapidoPage {
               private toastCtrl: ToastController,
               private configProvider: ConfigProvider) {  }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     this.configProvider.getAll()
       .then((results) => {
         this.fatores = results;
@@ -57,7 +57,6 @@ export class CalculoRapidoPage {
     } catch(err) {
       this.presentToast("Configure os fatores antes de usar essa função");
       this.navCtrl.push(ConfigPage);
-      console.log("O erro é:" + err);
     }
   }      
 

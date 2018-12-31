@@ -29,7 +29,7 @@ export class ConfigPage {
   }
 
   filtraFator(item: FatorList) {
-    return item.key.startsWith("fatoresConfig");
+    return item.key.startsWith("fator_");
   }
 
   save() {
