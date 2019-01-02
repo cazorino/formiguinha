@@ -16,6 +16,7 @@ import { ConfigPage } from '../pages/config/config';
 import { ConfigProvider } from '../providers/config/config';
 import { RefeicaoProvider } from '../providers/refeicao/refeicao';
 import { EditaRefeicaoPage } from '../pages/edita-refeicao/edita-refeicao';
+import { ComerPage } from '../pages/comer/comer';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { EditaRefeicaoPage } from '../pages/edita-refeicao/edita-refeicao';
     CalculoRapidoPage,
     ControlePage,
     ConfigPage,
+    ComerPage,
     EditaRefeicaoPage,
     TabsPage
   ],
@@ -39,6 +41,7 @@ import { EditaRefeicaoPage } from '../pages/edita-refeicao/edita-refeicao';
     CalculoRapidoPage,
     ControlePage,
     ConfigPage,
+    ComerPage,
     EditaRefeicaoPage,
     TabsPage
   ],

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { RefeicaoProvider, RefeicaoList } from '../../providers/refeicao/refeicao';
 import { EditaRefeicaoPage } from '../edita-refeicao/edita-refeicao';
+import { ComerPage } from '../comer/comer';
 
 
 @IonicPage()
@@ -27,6 +28,10 @@ export class RefeicaoPage {
 
   filtraRefeicao(item: RefeicaoList) {
     return item.key.startsWith("refeicao_");
+  }
+
+  comer(item: RefeicaoList){
+    this.navCtrl.push(ComerPage, { key: item.key, refeicao: item.refeicao });
   }
 
   addRefeicao(n: string) {
