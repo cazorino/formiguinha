@@ -1,8 +1,12 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar no-border-bottom color="dark">
     <ion-title>Comer</ion-title>
   </ion-navbar>
+
+  <ion-toolbar no-border-top color="dark">
+    <ion-searchbar placeholder="Procurar alimento" (ionInput)="filterItems($event)"></ion-searchbar>
+  </ion-toolbar>
 
 </ion-header>
 
