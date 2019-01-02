@@ -33,32 +33,23 @@ export class CalculoRapidoPage {
       .then((results) => {
         this.fatores = results;
     });
-    /*
-    try {
-      this.fatores.forEach(element => {
-        if (element.key.startsWith("fatoresConfig")) {
-          this.fs = element.fator.fs;
-          this.fd = element.fator.fd;
-          this.fc = element.fator.fc;
-        }
-        //verificação se fatores são vazios ou nulos
-        if (this.fs == 0 || this.fs == null || this.fs == undefined) {
-          this.presentToast("Configure os fatores antes de usar essa função");
-          this.navCtrl.push(ConfigPage);
-        }
-        if (this.fd == 0 || this.fd == null || this.fd == undefined) {
-          this.presentToast("Configure os fatores antes de usar essa função");
-          this.navCtrl.push(ConfigPage);
-        }
-        if (this.fc == 0 || this.fc == null || this.fc == undefined) {
-          this.presentToast("Configure os fatores antes de usar essa função");
-          this.navCtrl.push(ConfigPage);
-        }
-      });
-    } catch(err) {
-      console.log(err);
-    }*/
   }      
+
+  validafator() {
+    //verificação se fatores são vazios ou nulos
+    if (this.fs == 0 || this.fs == null || this.fs == undefined) {
+      this.presentToast("Configure os fatores antes de usar essa função");
+      this.navCtrl.push(ConfigPage);
+    }
+    if (this.fd == 0 || this.fd == null || this.fd == undefined) {
+      this.presentToast("Configure os fatores antes de usar essa função");
+      this.navCtrl.push(ConfigPage);
+    }
+    if (this.fc == 0 || this.fc == null || this.fc == undefined) {
+      this.presentToast("Configure os fatores antes de usar essa função");
+      this.navCtrl.push(ConfigPage);
+    }
+  }
 
   filtraFator(item: FatorList) {
     if (item.key.startsWith("fator_")) {
@@ -80,6 +71,7 @@ export class CalculoRapidoPage {
   }
 
   calcular() {
+    this.validafator(); //valida os valores do fator_config
     if (this.tipoCalculo == null) {
       this.presentToast("Selecione um tipo de cálculo");
     }
@@ -88,7 +80,7 @@ export class CalculoRapidoPage {
           this.presentToast("Insira o valor da sua glicemia");
           this.resultado = null;
       } else {
-        this.resultado = (this.glicemia - 50) / 150;
+        this.resultado = (this.glicemia - this.fs) / this.fd;
       }
     }
     if (this.tipoCalculo == "C") {
@@ -96,7 +88,7 @@ export class CalculoRapidoPage {
         this.presentToast("Insira o valor de carboidratos consumidos");
         this.resultado = null;
       } else {
-        this.resultado = this.carboidratos / 400;
+        this.resultado = this.carboidratos / this.fc;
       }
     }
     if (this.tipoCalculo == "A") {
@@ -104,8 +96,8 @@ export class CalculoRapidoPage {
         this.presentToast("Os valores de carboidrato e glicemia não podem ficar vazios");
         this.resultado = null;
       } else {
-        this.resultadoG = (this.glicemia - 50) / 100;
-        this.resultadoC = this.carboidratos / 100;
+        this.resultadoG = (this.glicemia - this.fs) / this.fd;
+        this.resultadoC = this.carboidratos / this.fc;
         this.resultado = this.resultadoG + this.resultadoC;
       }
     }
