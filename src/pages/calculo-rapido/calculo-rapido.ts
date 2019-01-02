@@ -32,7 +32,8 @@ export class CalculoRapidoPage {
     this.configProvider.getAll()
       .then((results) => {
         this.fatores = results;
-      });
+    });
+    /*
     try {
       this.fatores.forEach(element => {
         if (element.key.startsWith("fatoresConfig")) {
@@ -55,11 +56,20 @@ export class CalculoRapidoPage {
         }
       });
     } catch(err) {
-      this.presentToast("Configure os fatores antes de usar essa função");
-      this.navCtrl.push(ConfigPage);
-    }
+      console.log(err);
+    }*/
   }      
 
+  filtraFator(item: FatorList) {
+    if (item.key.startsWith("fator_")) {
+      this.fs = item.fator.fs;
+      this.fd = item.fator.fd;
+      this.fc = item.fator.fc;
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   presentToast(mensagem) {
     let toast = this.toastCtrl.create({

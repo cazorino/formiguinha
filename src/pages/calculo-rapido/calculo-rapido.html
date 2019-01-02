@@ -7,6 +7,26 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-list>
+        <ion-card *ngFor="let item of fatores">
+          <div *ngIf="filtraFator(item)">
+            <ion-card-content>
+              <ion-row text-center>
+                <ion-col>
+                  <p><strong>GA:</strong> {{ item.fator.fs }}</p>
+                </ion-col>
+                <ion-col>
+                  <p><strong>FS:</strong> {{ item.fator.fd }}</p>
+                </ion-col>
+                <ion-col>
+                  <p><strong>FC:</strong> {{ item.fator.fc }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </div>
+        </ion-card>
+      </ion-list>
+
   <ion-item>
     <ion-label>Calcular com</ion-label>
     <ion-select [(ngModel)]="tipoCalculo" (ionChange)="mudouSelect($event)" interface="popover">
