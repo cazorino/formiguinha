@@ -31,15 +31,21 @@
           </ion-card-content>
           <ion-row text-center>
             <ion-col>
+              <button ion-button icon-left clear small color="danger" (click)="removeRefeicao(item)">
+                    <ion-icon name="trash"></ion-icon>
+                    <div>Excluir</div>
+              </button>
+            </ion-col>
+            <ion-col>
               <button ion-button icon-left clear small (click)="editRefeicao(item)">
                 <ion-icon name="create"></ion-icon>
                 <div>Editar</div>
               </button>
             </ion-col>
             <ion-col>
-              <button ion-button icon-left clear small color="danger" (click)="removeRefeicao(item)">
-                <ion-icon name="trash"></ion-icon>
-                <div>Excluir</div>
+              <button ion-button icon-left clear small (click)="editRefeicao(item)" style="color: purple;">
+                  <ion-icon name="pulse"></ion-icon>
+                  <div>Comer</div>
               </button>
             </ion-col>
           </ion-row>
