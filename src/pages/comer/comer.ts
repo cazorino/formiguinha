@@ -7,7 +7,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'comer.html',
 })
 export class ComerPage {
-
+  alimentos: Array<{nome: string; unidade: string; carbs: number}>;
+  allAlimentos: any;
+  queryText: string;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 }
