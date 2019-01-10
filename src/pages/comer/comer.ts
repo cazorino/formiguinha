@@ -16,14 +16,22 @@ export class ComerPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.queryText = '';
+    this.inicializarAlimentos();
+
+    this.allAlimentos = this.alimentos;
+  }
+
+  inicializarAlimentos() {
     this.alimentos = [
       { nome: 'Arroz Branco', unidade: 'escumadeira', carbs: 80 },
       { nome: 'arroz integral', unidade: 'escumadeira', carbs: 50 },
       { nome: 'macarrão', unidade: 'pegador', carbs: 150 },
       { nome: 'macarrão com molho', unidade: 'pegador', carbs: 200 }
     ];
+  }
 
-    this.allAlimentos = this.alimentos;
+  pesquisar() {
+    console.log('está pesquisando');
   }
 
   filterAlimento(ali: any) {

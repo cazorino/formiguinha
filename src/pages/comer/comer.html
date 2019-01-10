@@ -24,8 +24,11 @@
       <ion-label floating>Valor da sua <strong>Glicemia</strong> (mg/dl)</ion-label>
       <ion-input type="number" [(ngModel)]="glicemia"></ion-input>
     </ion-item>
-  
   </ion-list>
+  <button ion-button full color="light" (click)="pesquisar()" icon-end>
+      Pesquisar Alimentos
+    <ion-icon name="search"></ion-icon>
+  </button>
   <ion-list>
     <ion-item no-lines *ngFor="let alimento of alimentos">
       <h3>{{ alimento.nome }}</h3>
