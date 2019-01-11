@@ -1,0 +1,32 @@
+
+<ion-header>
+
+  <ion-navbar no-border-bottom color="dark">
+      <ion-buttons start>
+          <button ion-button (click)="dismiss()">Fechar</button>
+      </ion-buttons>
+    <ion-title>Pesquisar</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top color="dark">
+      <ion-searchbar 
+      placeholder="Procurar alimento"
+      [(ngModel)]="queryText"
+      (ionInput)="filterAlimento($event)"
+      clearInput>
+  
+      </ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item no-lines *ngFor="let alimento of alimentos">
+      <h3>{{ alimento.nome }}</h3>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

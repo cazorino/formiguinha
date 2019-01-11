@@ -3,17 +3,6 @@
   <ion-navbar no-border-bottom color="dark">
     <ion-title>Comer</ion-title>
   </ion-navbar>
-
-  <ion-toolbar no-border-top color="dark">
-    <ion-searchbar 
-    placeholder="Procurar alimento"
-    [(ngModel)]="queryText"
-    (ionInput)="filterAlimento($event)"
-    clearInput>
-
-    </ion-searchbar>
-  </ion-toolbar>
-
 </ion-header>
 
 
@@ -25,14 +14,11 @@
       <ion-input type="number" [(ngModel)]="glicemia"></ion-input>
     </ion-item>
   </ion-list>
+  
   <button ion-button full color="light" (click)="pesquisar()" icon-end>
       Pesquisar Alimentos
     <ion-icon name="search"></ion-icon>
   </button>
-  <ion-list>
-    <ion-item no-lines *ngFor="let alimento of alimentos">
-      <h3>{{ alimento.nome }}</h3>
-    </ion-item>
-  </ion-list>
+
 
 </ion-content>

@@ -17,6 +17,7 @@ import { ConfigProvider } from '../providers/config/config';
 import { RefeicaoProvider } from '../providers/refeicao/refeicao';
 import { EditaRefeicaoPage } from '../pages/edita-refeicao/edita-refeicao';
 import { ComerPage } from '../pages/comer/comer';
+import { PesquisarPage } from '../pages/pesquisar/pesquisar';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ComerPage } from '../pages/comer/comer';
     ConfigPage,
     ComerPage,
     EditaRefeicaoPage,
+    PesquisarPage,
     TabsPage
   ],
   imports: [
@@ -43,6 +45,7 @@ import { ComerPage } from '../pages/comer/comer';
     ConfigPage,
     ComerPage,
     EditaRefeicaoPage,
+    PesquisarPage,
     TabsPage
   ],
   providers: [

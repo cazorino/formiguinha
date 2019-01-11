@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
-import _ from 'lodash';
+import { PesquisarPage } from '../pesquisar/pesquisar';
 
 @IonicPage()
 @Component({
@@ -10,40 +10,14 @@ import _ from 'lodash';
 })
 
 export class ComerPage {
-  alimentos: Array<{nome: string; unidade: string; carbs: number}>;
-  allAlimentos: any;
-  queryText: string;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.queryText = '';
-    this.inicializarAlimentos();
 
-    this.allAlimentos = this.alimentos;
-  }
-
-  inicializarAlimentos() {
-    this.alimentos = [
-      { nome: 'Arroz Branco', unidade: 'escumadeira', carbs: 80 },
-      { nome: 'arroz integral', unidade: 'escumadeira', carbs: 50 },
-      { nome: 'macarrão', unidade: 'pegador', carbs: 150 },
-      { nome: 'macarrão com molho', unidade: 'pegador', carbs: 200 }
-    ];
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public modalCtrl: ModalController) {
   }
 
   pesquisar() {
-    console.log('está pesquisando');
-  }
-
-  filterAlimento(ali: any) {
-    const val = ali.target.value;
-      
-    if (val && val.trim() != '') {
-      this.alimentos = _.values(this.allAlimentos);
-      this.alimentos = this.alimentos.filter((alimento) => {
-        return (alimento.nome.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    } else {
-      this.alimentos = this.allAlimentos;
-    }
+    let myModal = this.modalCtrl.create(PesquisarPage);
+    myModal.present();
   }
 }
