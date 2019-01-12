@@ -10,10 +10,16 @@ import { PesquisarPage } from '../pesquisar/pesquisar';
 })
 
 export class ComerPage {
+  alimentos: Array<{nome: string; unidade: string; carbs: number}>;
+
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               public modalCtrl: ModalController) {
+  }
+
+  ionViewWillEnter() {
+    //this.alimento = this.navParams.get('meuAlimento');
   }
 
   pesquisar() {

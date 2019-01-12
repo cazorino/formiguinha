@@ -24,9 +24,9 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item no-lines *ngFor="let alimento of alimentos">
-      <h3>{{ alimento.nome }}</h3>
-    </ion-item>
+    <button ion-item detail-none (click)="selecionaAlimento(alimento)" *ngFor="let alimento of alimentos">
+      {{ alimento.nome }}
+    </button>
   </ion-list>
 
 </ion-content>

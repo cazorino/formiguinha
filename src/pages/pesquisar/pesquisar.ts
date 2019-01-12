@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import _ from 'lodash';
 
 @IonicPage()
@@ -13,11 +13,45 @@ export class PesquisarPage {
   allAlimentos: any;
   queryText: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public viewCtrl: ViewController,
+              private alertCtrl: AlertController) {
     this.queryText = '';
     this.inicializarAlimentos();
 
     this.allAlimentos = this.alimentos;
+  }
+
+  selecionaAlimento(alimento: any) {
+    this.presentPrompt(alimento);
+  }
+
+  presentPrompt(alimento: any) {
+    let alert = this.alertCtrl.create({
+      title: 'Quantas ' + alimento.unidade + '?',
+      inputs: [
+        {
+          name: 'unit',
+          placeholder: 'quantidade de ' + alimento.unidade,
+          type: 'number'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'OK',
+          handler: data => {
+            this.navCtrl.getPrevious().data.meuAlimento = 'funcionou';
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   dismiss() {
@@ -40,10 +74,10 @@ export class PesquisarPage {
 
   inicializarAlimentos() {
     this.alimentos = [
-      { nome: 'Arroz Branco', unidade: 'escumadeira', carbs: 80 },
-      { nome: 'arroz integral', unidade: 'escumadeira', carbs: 50 },
-      { nome: 'macarrão', unidade: 'pegador', carbs: 150 },
-      { nome: 'macarrão com molho', unidade: 'pegador', carbs: 200 }
+      { nome: 'Arroz Branco', unidade: 'escumadeiras', carbs: 80 },
+      { nome: 'arroz integral', unidade: 'escumadeiras', carbs: 50 },
+      { nome: 'macarrão', unidade: 'pegadores', carbs: 150 },
+      { nome: 'macarrão com molho', unidade: 'pegadores', carbs: 200 }
     ];
   }
 }
