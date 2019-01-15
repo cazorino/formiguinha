@@ -45,7 +45,9 @@ export class PesquisarPage {
         {
           text: 'OK',
           handler: data => {
-            this.navCtrl.getPrevious().data.meuAlimento = 'funcionou';
+  
+            let key = "quantidade_" + alimento.nome;
+            this.storage.set(key, data.unit);
             this.navCtrl.pop();
           }
         }

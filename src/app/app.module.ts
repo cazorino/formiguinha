@@ -18,6 +18,7 @@ import { RefeicaoProvider } from '../providers/refeicao/refeicao';
 import { EditaRefeicaoPage } from '../pages/edita-refeicao/edita-refeicao';
 import { ComerPage } from '../pages/comer/comer';
 import { PesquisarPage } from '../pages/pesquisar/pesquisar';
+import { AlimentosProvider } from '../providers/alimentos/alimentos';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PesquisarPage } from '../pages/pesquisar/pesquisar';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
-    RefeicaoProvider
+    RefeicaoProvider,
+    AlimentosProvider
   ]
 })
 export class AppModule {}

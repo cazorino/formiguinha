@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-
 import { PesquisarPage } from '../pesquisar/pesquisar';
 
 @IonicPage()
@@ -10,8 +9,6 @@ import { PesquisarPage } from '../pesquisar/pesquisar';
 })
 
 export class ComerPage {
-  alimentos: Array<{nome: string; unidade: string; carbs: number}>;
-
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
@@ -19,7 +16,7 @@ export class ComerPage {
   }
 
   ionViewWillEnter() {
-    //this.alimento = this.navParams.get('meuAlimento');
+
   }
 
   pesquisar() {

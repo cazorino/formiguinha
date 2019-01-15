@@ -22,10 +22,13 @@
 
   <ion-list>
     <ion-list-header>
-      Alimentos consumidos:
+      <strong>
+          Alimentos consumidos:
+      </strong>
     </ion-list-header>
-    <ion-item>
-
+    {{ qtd }}
+    <ion-item *ngFor="let alimento of meusAlimentos">
+    
     </ion-item>
   </ion-list>
 
