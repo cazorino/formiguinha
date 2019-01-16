@@ -22,10 +22,16 @@
 
 
 <ion-content padding>
-
   <ion-list>
     <button ion-item detail-none (click)="selecionaAlimento(alimento)" *ngFor="let alimento of alimentos">
-      {{ alimento.nome }}
+      <ion-row>
+        <ion-col>
+            {{ alimento.nome }}
+        </ion-col>
+        <ion-col text-right>
+            {{ alimento.carbs }}g
+        </ion-col>
+      </ion-row>
     </button>
   </ion-list>
 

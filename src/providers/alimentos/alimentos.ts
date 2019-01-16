@@ -8,6 +8,7 @@ export class AlimentosProvider {
   constructor(private storage: Storage) {
 
   }
+  
   public insert(alimento: Alimento) {
     this.keyN = "meusAlimentos_" + alimento.nome;
     return this.save(this.keyN, alimento);

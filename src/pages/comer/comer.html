@@ -21,14 +21,19 @@
   </button>
 
   <ion-list>
-    <ion-list-header>
-      <strong>
-          Alimentos consumidos:
-      </strong>
-    </ion-list-header>
-    {{ qtd }}
-    <ion-item *ngFor="let alimento of meusAlimentos">
-    
+    <ion-item *ngFor="let item of alimentos">
+      <div *ngIf="filtraMeusAlimentos(item)">
+        <ion-row>
+            <ion-col>
+                <p style="color: #488aff">{{ item.alimento.quantidade }} {{ item.alimento.unidade }}</p><p style="color: #222"> de {{ item.alimento.nome }}</p>
+            </ion-col>
+            <ion-col text-right>
+                <button ion-button icon-only color="danger" small (click)="removeAlimento(item)">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+      </div>
     </ion-item>
   </ion-list>
 

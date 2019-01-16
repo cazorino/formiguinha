@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController, ToastController } from 'ionic-angular';
 import _ from 'lodash';
+import { Alimento, AlimentosProvider } from '../../providers/alimentos/alimentos';
 
 @IonicPage()
 @Component({
@@ -12,11 +13,15 @@ export class PesquisarPage {
   alimentos: Array<{nome: string; unidade: string; carbs: number}>;
   allAlimentos: any;
   queryText: string;
+  model: Alimento;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               public viewCtrl: ViewController,
-              private alertCtrl: AlertController) {
+              private alimentosProvider: AlimentosProvider,
+              private alertCtrl: AlertController,
+              private toastCtrl: ToastController) {
+                
     this.queryText = '';
     this.inicializarAlimentos();
 
@@ -29,7 +34,7 @@ export class PesquisarPage {
 
   presentPrompt(alimento: any) {
     let alert = this.alertCtrl.create({
-      title: 'Quantas ' + alimento.unidade + '?',
+      title: 'Quantos(as) ' + alimento.unidade + '?',
       inputs: [
         {
           name: 'unit',
@@ -45,15 +50,29 @@ export class PesquisarPage {
         {
           text: 'OK',
           handler: data => {
-  
-            let key = "quantidade_" + alimento.nome;
-            this.storage.set(key, data.unit);
-            this.navCtrl.pop();
+            //montagem do objeto
+            this.model = new Alimento();
+            this.model.nome = alimento.nome;
+            this.model.unidade = alimento.unidade;
+            this.model.carbs = alimento.carbs;
+            this.model.quantidade = data.unit;
+            //fim do objeto
+            this.alimentosProvider.insert(this.model);
+            this.presentToast("Você acaba de comer " + alimento.nome + "!");
+            this.dismiss();
           }
         }
       ]
     });
     alert.present();
+  }
+
+  presentToast(mensagem) {
+    let toast = this.toastCtrl.create({
+      message: mensagem,
+      duration: 3000
+    });
+    toast.present();
   }
 
   dismiss() {
