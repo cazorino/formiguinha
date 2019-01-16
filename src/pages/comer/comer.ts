@@ -44,6 +44,12 @@ export class ComerPage {
     myModal.present();
   }
 
+  doRefresh(refresher) {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
+  }
   
   presentToast(mensagem) {
     let toast = this.toastCtrl.create({
