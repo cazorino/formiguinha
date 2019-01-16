@@ -36,7 +36,7 @@ export class ComerPage {
         let index = this.alimentos.indexOf(item);
         this.alimentos.splice(index, 1);
         this.presentToast("Alimento removido.");
-      })
+      });
   }
 
   pesquisar() {

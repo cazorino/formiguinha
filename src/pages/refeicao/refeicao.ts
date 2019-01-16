@@ -48,7 +48,7 @@ export class RefeicaoPage {
         let index = this.refeicoes.indexOf(item);
         this.refeicoes.splice(index, 1);
         this.presentToast("Refeição Excluída.");
-      })
+      });
   }
 
   presentToast(mensagem) {
