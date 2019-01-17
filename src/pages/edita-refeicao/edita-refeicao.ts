@@ -47,8 +47,13 @@ export class EditaRefeicaoPage {
   }
 
   validaFatores() {
-    //verificação se fatores são vazios ou nulos
     var retorno: boolean = true;
+    // verifica nome
+    if (this.model.name == "" || this.model.name == null || this.model.name == undefined) {
+      this.presentToast("Coloque um nome para sua refeição!");
+      retorno = false;
+    }
+    //verificação se fatores são vazios ou nulos
     if (this.model.fatorSub == 0 || this.model.fatorSub == null || this.model.fatorSub == undefined) {
       this.presentToast("Configure os fatores desta refeição corretamente!");
       retorno = false;
