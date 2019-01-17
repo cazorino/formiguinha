@@ -26,14 +26,16 @@ export class EditaRefeicaoPage {
   }
   
   save() {
-    this.saveRefeicao()
-      .then(() => {
-        this.presentToast("Refeição salva.");
-        this.navCtrl.pop();
-      })
-      .catch(() => {
-        this.presentToast("Erro ao salvar a refeição.");
-      })
+    if (this.validaFatores()) {
+      this.saveRefeicao()
+        .then(() => {
+          this.presentToast("Refeição salva.");
+          this.navCtrl.pop();
+        })
+        .catch(() => {
+          this.presentToast("Erro ao salvar a refeição.");
+        })
+    }
   }
 
   private saveRefeicao() {
@@ -42,6 +44,24 @@ export class EditaRefeicaoPage {
     } else {
       return this.refeicaoProvider.insert(this.model);
     }
+  }
+
+  validaFatores() {
+    //verificação se fatores são vazios ou nulos
+    var retorno: boolean = true;
+    if (this.model.fatorSub == 0 || this.model.fatorSub == null || this.model.fatorSub == undefined) {
+      this.presentToast("Configure os fatores desta refeição corretamente!");
+      retorno = false;
+    }
+    if (this.model.fatorDiv == 0 || this.model.fatorDiv == null || this.model.fatorDiv == undefined) {
+      this.presentToast("Configure os fatores desta refeição corretamente!");
+      retorno = false;
+    }
+    if (this.model.fatorCarb == 0 || this.model.fatorCarb == null || this.model.fatorCarb == undefined) {
+      this.presentToast("Configure os fatores desta refeição corretamente!");
+      retorno = false;
+    }
+    return retorno;
   }
 
   presentToast(mensagem) {
