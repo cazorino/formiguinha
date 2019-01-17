@@ -23,6 +23,16 @@
 
 <ion-content padding>
   <ion-list>
+    <ion-item>
+      <ion-row>
+        <ion-col text-center>
+          <h3><strong>Alimento</strong></h3>
+        </ion-col>
+        <ion-col text-right>
+          <h3><strong>CHO</strong></h3>
+        </ion-col>
+      </ion-row>
+    </ion-item>
     <button ion-item detail-none (click)="selecionaAlimento(alimento)" *ngFor="let alimento of alimentos">
       <ion-row>
         <ion-col>
