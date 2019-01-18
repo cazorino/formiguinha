@@ -42,37 +42,47 @@ export class ComerPage {
 
   calcular() {
     if (this.glicemia != null && this.glicemia != "" && this.glicemia != undefined) {
-      //calculo Glicemia
-      this.resultadoGlicemia = (this.glicemia - this.refeicao.fatorSub) / this.refeicao.fatorDiv;
-      //calculo carbs
-      this.alimentos.forEach(element => {
-        if (this.filtraMeusAlimentos(element)) {
-          this.somaCarbs = this.somaCarbs + (element.alimento.carbs * element.alimento.quantidade);
-        }
-      });
-      this.resultadoCarbs = this.somaCarbs / this.refeicao.fatorCarb;
-      //resultado final
-      this.resultado = this.resultadoGlicemia + this.resultadoCarbs;
-      //exibe resultado
-      let alert = this.alertCtrl.create({
-        title: 'Resultado',
-        subTitle: '<br>Aplique <b>' + this.resultado + ' UI </b>',
-        message: 'Resultado da Glicemia: ' + this.resultadoGlicemia + '<b> + </b>Resultado do CHO: ' + this.resultadoCarbs,
-        buttons: [
-          {
-            text: 'Descartar',
-            role: 'cancel',
-          },
-          {
-            text: 'Salvar',
-            handler: () => {
-              console.log('Agree clicked');
-            }
+      try {
+        //calculo Glicemia
+        this.resultadoGlicemia = (this.glicemia - this.refeicao.fatorSub) / this.refeicao.fatorDiv;
+        //calculo carbs
+        this.alimentos.forEach(element => {
+          if (this.filtraMeusAlimentos(element)) {
+            this.somaCarbs = this.somaCarbs + (element.alimento.carbs * element.alimento.quantidade);
           }
-        ]
-      });
-      alert.present();
-      this.limpaMeusAlimentos();
+        });
+        this.resultadoCarbs = this.somaCarbs / this.refeicao.fatorCarb;
+        //resultado final
+        this.resultado = this.resultadoGlicemia + this.resultadoCarbs;
+        //exibe resultado
+        let alert = this.alertCtrl.create({
+          title: 'Resultado',
+          subTitle: '<br>Aplique <b>' + this.resultado + ' UI </b>',
+          message: 'Resultado da Glicemia: ' + this.resultadoGlicemia + '<b> + </b>Resultado do CHO: ' + this.resultadoCarbs,
+          buttons: [
+            {
+              text: 'Descartar',
+              role: 'cancel',
+            },
+            {
+              text: 'Salvar',
+              handler: () => {
+                console.log('Agree clicked');
+              }
+            }
+          ]
+        });
+        alert.present();
+        this.limpaMeusAlimentos();
+      } catch (error) {
+        let alert = this.alertCtrl.create({
+          title: 'Erro! :(',
+          subTitle: 'Apresente este erro ao desenvolvedor',
+          message: error,
+          buttons: ['OK']
+        });
+        alert.present();
+      }
     } else {
       this.presentToast("Insira o valor da sua glicemia");
     }
