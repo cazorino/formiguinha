@@ -74,6 +74,7 @@ export class ComerPage {
               handler: () => {
                 this.controle = new Controle();
                 this.controle.data = this.datepipe.transform(new Date(), "dd/MM/yyyy");
+                this.controle.horario = this.datepipe.transform(new Date(), "HH:mm");
                 this.controle.nomeRefeicao = this.refeicao.name;
                 this.controle.qtdCarbsConsumidos = this.somaCarbs;
                 this.controle.resultadoInsulinaCarbs = this.resultadoCarbs;

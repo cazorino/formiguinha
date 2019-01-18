@@ -49,6 +49,7 @@ export class ControleProvider {
 
 export class Controle {
   data: string;
+  horario: string;
   nomeRefeicao: string;
   qtdCarbsConsumidos: number;
   resultadoInsulinaCarbs: number;

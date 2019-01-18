@@ -21,6 +21,8 @@ import { PesquisarPage } from '../pages/pesquisar/pesquisar';
 import { AlimentosProvider } from '../providers/alimentos/alimentos';
 import { ControleProvider } from '../providers/controle/controle';
 import { DatePipe } from '@angular/common';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { DatePipe } from '@angular/common';
     RefeicaoProvider,
     AlimentosProvider,
     ControleProvider,
-    DatePipe
+    DatePipe,
+    File,
+    FileOpener
   ]
 })
 export class AppModule {}

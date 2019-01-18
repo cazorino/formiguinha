@@ -8,6 +8,38 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding text-center>
+    <button ion-button round icon-end color="positive" (click)="limpar()">
+        Limpar Registros
+        <ion-icon name="trash"></ion-icon>
+    </button>
+    <ion-list>
+        <ion-item>
+          <ion-label floating>Qual o seu nome completo?</ion-label>
+          <ion-input type="text" [(ngModel)]="nomeCompleto"></ion-input>
+        </ion-item>
+      <ion-item>
+          <ion-label floating>Qual a sua idade?</ion-label>
+          <ion-input type="number" [(ngModel)]="idade"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Qual o nome do seu hospital?</ion-label>
+            <ion-input type="text" [(ngModel)]="hospital"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Qual o nome do seu médico?</ion-label>
+            <ion-input type="text" [(ngModel)]="medico"></ion-input>
+        </ion-item>
+    </ion-list>
+  <div>
+      <button ion-button round outline large color="danger" (click)="criarPdf()">
+          Criar PDF
+      </button>
+      <br><br>
+      <button ion-button round icon-end large color="danger" [disabled]="!pdfObj" (click)="baixarPdf()">
+        Baixar PDF
+        <ion-icon name="download"></ion-icon>
+      </button>
+  </div>
 
 </ion-content>
