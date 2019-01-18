@@ -4,6 +4,8 @@ import { PesquisarPage } from '../pesquisar/pesquisar';
 import { AlimentosProvider, AlimentoList } from '../../providers/alimentos/alimentos';
 import { Refeicao } from '../../providers/refeicao/refeicao';
 import { Storage } from '@ionic/storage';
+import { Controle, ControleProvider } from '../../providers/controle/controle';
+import { DatePipe } from '@angular/common';
 
 @IonicPage()
 @Component({
@@ -19,6 +21,7 @@ export class ComerPage {
   resultadoCarbs: number;
   somaCarbs: number = 0;
   glicemia: any;
+  controle: Controle;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
@@ -26,7 +29,9 @@ export class ComerPage {
               private alimentosProvider: AlimentosProvider,
               private toastCtrl: ToastController,
               private alertCtrl: AlertController,
-              private storage: Storage) {
+              private storage: Storage,
+              private datepipe: DatePipe,
+              private controleProvider: ControleProvider) {
     // pega dados da refeição escolhida  
     this.storage.get('escolhaRefeicao_').then((val) => {
       this.refeicao = val;
@@ -67,7 +72,15 @@ export class ComerPage {
             {
               text: 'Salvar',
               handler: () => {
-                console.log('Agree clicked');
+                this.controle = new Controle();
+                this.controle.data = this.datepipe.transform(new Date(), "dd/MM/yyyy");
+                this.controle.nomeRefeicao = this.refeicao.name;
+                this.controle.qtdCarbsConsumidos = this.somaCarbs;
+                this.controle.resultadoInsulinaCarbs = this.resultadoCarbs;
+                this.controle.resultadoInsulinaGlicemia = this.resultadoGlicemia;
+                this.controle.glicemiaExame = this.glicemia;
+                this.controleProvider.insert(this.controle);
+                this.presentToast("Dados salvos. Até a próxima refeição!");
               }
             }
           ]

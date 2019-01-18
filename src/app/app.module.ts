@@ -19,6 +19,8 @@ import { EditaRefeicaoPage } from '../pages/edita-refeicao/edita-refeicao';
 import { ComerPage } from '../pages/comer/comer';
 import { PesquisarPage } from '../pages/pesquisar/pesquisar';
 import { AlimentosProvider } from '../providers/alimentos/alimentos';
+import { ControleProvider } from '../providers/controle/controle';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { AlimentosProvider } from '../providers/alimentos/alimentos';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigProvider,
     RefeicaoProvider,
-    AlimentosProvider
+    AlimentosProvider,
+    ControleProvider,
+    DatePipe
   ]
 })
 export class AppModule {}
