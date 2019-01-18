@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { RefeicaoProvider, RefeicaoList } from '../../providers/refeicao/refeicao';
 import { EditaRefeicaoPage } from '../edita-refeicao/edita-refeicao';
 import { ComerPage } from '../comer/comer';
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage()
@@ -16,7 +17,8 @@ export class RefeicaoPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private refeicaoProvider: RefeicaoProvider,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              private storage: Storage) {
   }
 
   ionViewDidEnter() {
@@ -30,8 +32,9 @@ export class RefeicaoPage {
     return item.key.startsWith("refeicao_");
   }
 
-  comer(item: RefeicaoList){
-    this.navCtrl.push(ComerPage, { key: item.key, refeicao: item.refeicao });
+  comer(item: RefeicaoList) {
+    this.storage.set("escolhaRefeicao_", item.refeicao);
+    this.navCtrl.push(ComerPage);
   }
 
   addRefeicao(n: string) {

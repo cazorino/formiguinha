@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController, AlertController } from 'ionic-angular';
 import { PesquisarPage } from '../pesquisar/pesquisar';
 import { AlimentosProvider, AlimentoList } from '../../providers/alimentos/alimentos';
+import { Refeicao } from '../../providers/refeicao/refeicao';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -11,12 +13,24 @@ import { AlimentosProvider, AlimentoList } from '../../providers/alimentos/alime
 
 export class ComerPage {
   alimentos: AlimentoList[];
+  refeicao: Refeicao;
+  resultado: number;
+  resultadoGlicemia: number;
+  resultadoCarbs: number;
+  somaCarbs: number = 0;
+  glicemia: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               public modalCtrl: ModalController,
               private alimentosProvider: AlimentosProvider,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              private alertCtrl: AlertController,
+              private storage: Storage) {
+    // pega dados da refeição escolhida  
+    this.storage.get('escolhaRefeicao_').then((val) => {
+      this.refeicao = val;
+    });
   }
 
   ionViewDidEnter() {
@@ -24,6 +38,53 @@ export class ComerPage {
       .then((results) => {
         this.alimentos = results;
       });
+  }
+
+  calcular() {
+    if (this.glicemia != null && this.glicemia != "" && this.glicemia != undefined) {
+      //calculo Glicemia
+      this.resultadoGlicemia = (this.glicemia - this.refeicao.fatorSub) / this.refeicao.fatorDiv;
+      //calculo carbs
+      this.alimentos.forEach(element => {
+        if (this.filtraMeusAlimentos(element)) {
+          this.somaCarbs = this.somaCarbs + (element.alimento.carbs * element.alimento.quantidade);
+        }
+      });
+      this.resultadoCarbs = this.somaCarbs / this.refeicao.fatorCarb;
+      //resultado final
+      this.resultado = this.resultadoGlicemia + this.resultadoCarbs;
+      //exibe resultado
+      let alert = this.alertCtrl.create({
+        title: 'Resultado',
+        subTitle: '<br>Aplique <b>' + this.resultado + ' UI </b>',
+        message: 'Resultado da Glicemia: ' + this.resultadoGlicemia + '<b> + </b>Resultado do CHO: ' + this.resultadoCarbs,
+        buttons: [
+          {
+            text: 'Descartar',
+            role: 'cancel',
+          },
+          {
+            text: 'Salvar',
+            handler: () => {
+              console.log('Agree clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+      this.limpaMeusAlimentos();
+    } else {
+      this.presentToast("Insira o valor da sua glicemia");
+    }
+  }
+
+  limpaMeusAlimentos() {
+    //limpa todos os meus alimentos da lista
+    this.alimentos.forEach(element => {
+      if (this.filtraMeusAlimentos(element)) {
+        this.removeAlimento(element);
+      } 
+    });
   }
 
   filtraMeusAlimentos(item: AlimentoList) {
