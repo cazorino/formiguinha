@@ -93,14 +93,14 @@ export class ControlePage {
         { text: 'Gerado em ' + data + ' às ' + new Date().toTimeString(), alignment: 'right' },
         { text: 'via aplicativo "Formiguinha", faça o download em: link', alignment: 'right' },
   
-        { text: '-----------------------------------------------------------------------------------------------------------------------------------------------', style: 'story', margin: [0, 15, 0, 15] },
+        { text: '-----------------------------------------------------------------------------------------------------------------------------------------------------------', style: 'story', margin: [0, 15, 0, 15] },
 
         { text: 'Paciente: ' + this.nomeCompleto, style: 'subheader' },
         { text: 'Idade: ' + this.idade + ' anos', style: 'subheader' },
         { text: 'Hospital: ' + this.hospital, style: 'subheader' },
         { text: 'Médico: ' + this.medico, style: 'subheader' },
 
-        { text: '-----------------------------------------------------------------------------------------------------------------------------------------------', style: 'story', margin: [0, 15, 0, 15] },
+        { text: '-----------------------------------------------------------------------------------------------------------------------------------------------------------', style: 'story', margin: [0, 15, 0, 15] },
         { text: 'Registro do Controle Glicêmico', bold: true, alignment: 'center', fontSize: 12, margin: [0, 15, 0, 18] },
         { text: 'Descrição da ordem das colunas:', bold: true },
         { text: 'Data - Horário - Refeição - CHO Consumidos - Insulina Contagem - Insulina Correção - Glicemia', margin: [0, 15, 0, 15] },
@@ -147,6 +147,7 @@ export class ControlePage {
       // On a browser simply use download!
       this.pdfObj.download();
     }
+    this.navCtrl.popToRoot();
   }
 
   presentToast(mensagem) {
