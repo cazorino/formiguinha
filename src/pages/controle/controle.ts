@@ -147,7 +147,6 @@ export class ControlePage {
       // On a browser simply use download!
       this.pdfObj.download();
     }
-    this.navCtrl.popToRoot();
   }
 
   presentToast(mensagem) {
