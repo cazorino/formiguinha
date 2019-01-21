@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { PesquisarPage } from '../pesquisar/pesquisar';
 import { AlimentosProvider, AlimentoList } from '../../providers/alimentos/alimentos';
 import { Refeicao } from '../../providers/refeicao/refeicao';
@@ -31,7 +31,8 @@ export class ComerPage {
               private alertCtrl: AlertController,
               private storage: Storage,
               private datepipe: DatePipe,
-              private controleProvider: ControleProvider) {
+              private controleProvider: ControleProvider,
+              public loadingCtrl: LoadingController) {
     // pega dados da refeição escolhida  
     this.storage.get('escolhaRefeicao_').then((val) => {
       this.refeicao = val;
@@ -125,8 +126,21 @@ export class ComerPage {
   }
 
   pesquisar() {
-    let myModal = this.modalCtrl.create(PesquisarPage);
-    myModal.present();
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+      content: 'Abrindo lista de alimentos...'
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      let myModal = this.modalCtrl.create(PesquisarPage);
+      myModal.present();
+    }, 1000);
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 4000);
   }
 
   doRefresh(refresher) {

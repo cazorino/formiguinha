@@ -59,7 +59,6 @@ export class PesquisarPage {
             //fim do objeto
             this.alimentosProvider.insert(this.model);
             this.presentToast("Você acaba de comer " + alimento.nome + "!");
-            this.dismiss();
           }
         }
       ]
