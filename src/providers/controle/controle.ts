@@ -52,8 +52,8 @@ export class Controle {
   horario: string;
   nomeRefeicao: string;
   qtdCarbsConsumidos: number;
-  resultadoInsulinaCarbs: number;
-  resultadoInsulinaGlicemia: number;
+  resultadoInsulinaCarbs: string;
+  resultadoInsulinaGlicemia: string;
   glicemiaExame: number;
 }
 

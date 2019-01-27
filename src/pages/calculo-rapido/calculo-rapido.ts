@@ -81,6 +81,7 @@ export class CalculoRapidoPage {
           this.resultado = null;
       } else {
         this.resultado = (this.glicemia - this.fs) / this.fd;
+        this.resultado.toFixed(2)
       }
     }
     if (this.tipoCalculo == "C") {
@@ -89,6 +90,7 @@ export class CalculoRapidoPage {
         this.resultado = null;
       } else {
         this.resultado = this.carboidratos / this.fc;
+        this.resultado.toFixed(2);
       }
     }
     if (this.tipoCalculo == "A") {
@@ -99,6 +101,9 @@ export class CalculoRapidoPage {
         this.resultadoG = (this.glicemia - this.fs) / this.fd;
         this.resultadoC = this.carboidratos / this.fc;
         this.resultado = this.resultadoG + this.resultadoC;
+        this.resultado.toFixed(2);
+        this.resultadoC.toFixed(2);
+        this.resultadoG.toFixed(2);
       }
     }
   }

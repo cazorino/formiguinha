@@ -63,8 +63,8 @@ export class ComerPage {
         //exibe resultado
         let alert = this.alertCtrl.create({
           title: 'Resultado',
-          subTitle: '<br>Aplique <b>' + this.resultado + ' UI </b>',
-          message: 'Resultado da Glicemia: ' + this.resultadoGlicemia + '<b> + </b>Resultado do CHO: ' + this.resultadoCarbs,
+          subTitle: '<br>Aplique <b>' + this.resultado.toFixed(2) + ' UI </b>',
+          message: 'Resultado da Glicemia: ' + this.resultadoGlicemia.toFixed(2) + '<b> + </b>Resultado do CHO: ' + this.resultadoCarbs.toFixed(2),
           buttons: [
             {
               text: 'Descartar',
@@ -78,8 +78,8 @@ export class ComerPage {
                 this.controle.horario = this.datepipe.transform(new Date(), "HH:mm");
                 this.controle.nomeRefeicao = this.refeicao.name;
                 this.controle.qtdCarbsConsumidos = this.somaCarbs;
-                this.controle.resultadoInsulinaCarbs = this.resultadoCarbs;
-                this.controle.resultadoInsulinaGlicemia = this.resultadoGlicemia;
+                this.controle.resultadoInsulinaCarbs = this.resultadoCarbs.toFixed(2);
+                this.controle.resultadoInsulinaGlicemia = this.resultadoGlicemia.toFixed(2);
                 this.controle.glicemiaExame = this.glicemia;
                 this.controleProvider.insert(this.controle);
                 this.presentToast("Dados salvos. Até a próxima refeição!");
