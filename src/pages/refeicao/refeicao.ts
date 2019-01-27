@@ -4,6 +4,8 @@ import { RefeicaoProvider, RefeicaoList } from '../../providers/refeicao/refeica
 import { EditaRefeicaoPage } from '../edita-refeicao/edita-refeicao';
 import { ComerPage } from '../comer/comer';
 import { Storage } from '@ionic/storage';
+import { ControleProvider, Controle } from '../../providers/controle/controle';
+import { DatePipe } from '@angular/common';
 
 
 @IonicPage()
@@ -13,12 +15,15 @@ import { Storage } from '@ionic/storage';
 })
 export class RefeicaoPage {
   refeicoes: RefeicaoList[];
+  controle: Controle;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private refeicaoProvider: RefeicaoProvider,
+              private controleProvider: ControleProvider,
               private toastCtrl: ToastController,
               private alertCtrl: AlertController,
+              private datepipe: DatePipe,
               private storage: Storage) {
   }
 
@@ -27,6 +32,41 @@ export class RefeicaoPage {
       .then((results) => {
         this.refeicoes = results;
       });
+  }
+
+  presentPrompt(item: RefeicaoList) {
+    let alert = this.alertCtrl.create({
+      title: 'Qual o valor da glicemia pós 2 horas?',
+      inputs: [
+        {
+          name: 'gli',
+          placeholder: 'valor da glicemia',
+          type: 'number'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'OK',
+          handler: data => {
+            this.controle = new Controle();
+            this.controle.data = this.datepipe.transform(new Date(), "dd/MM/yyyy");
+            this.controle.horario = this.datepipe.transform(new Date(), "HH:mm");
+            this.controle.nomeRefeicao = item.refeicao.name + ' - Pós';
+            this.controle.qtdCarbsConsumidos = null;
+            this.controle.resultadoInsulinaCarbs = null;
+            this.controle.resultadoInsulinaGlicemia = null;
+            this.controle.glicemiaExame = data.gli;
+            this.controleProvider.insert(this.controle);
+            this.presentToast("Valor da glicemia inserido!");
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   remover(item: RefeicaoList) {
