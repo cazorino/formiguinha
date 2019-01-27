@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { RefeicaoProvider, RefeicaoList } from '../../providers/refeicao/refeicao';
 import { EditaRefeicaoPage } from '../edita-refeicao/edita-refeicao';
 import { ComerPage } from '../comer/comer';
@@ -18,6 +18,7 @@ export class RefeicaoPage {
               public navParams: NavParams,
               private refeicaoProvider: RefeicaoProvider,
               private toastCtrl: ToastController,
+              private alertCtrl: AlertController,
               private storage: Storage) {
   }
 
@@ -26,6 +27,26 @@ export class RefeicaoPage {
       .then((results) => {
         this.refeicoes = results;
       });
+  }
+
+  remover(item: RefeicaoList) {
+    let alert = this.alertCtrl.create({
+      title: 'Tem certeza?',
+      message: 'Você quer mesmo remover essa refeição?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+        },
+        {
+          text: 'Sim, eu quero',
+          handler: () => {
+            this.removeRefeicao(item);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   filtraRefeicao(item: RefeicaoList) {

@@ -31,7 +31,7 @@
           </ion-card-content>
           <ion-row text-center>
             <ion-col>
-              <button ion-button icon-left clear small color="danger" (click)="removeRefeicao(item)">
+              <button ion-button icon-left clear small color="danger" (click)="remover(item)">
                     <ion-icon name="trash"></ion-icon>
                     <div>Excluir</div>
               </button>
@@ -46,6 +46,12 @@
               <button ion-button icon-left clear small (click)="comer(item)" style="color: purple;">
                   <ion-icon name="pulse"></ion-icon>
                   <div>Comer</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-left clear small (click)="comer(item)" style="color: #045f20;">
+                  <ion-icon name="water"></ion-icon>
+                  <div>G. Pós</div>
               </button>
             </ion-col>
           </ion-row>
